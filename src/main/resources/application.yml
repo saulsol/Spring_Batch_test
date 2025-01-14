@@ -1,9 +1,18 @@
 spring:
+  batch:
+    job:
+      enabled: false
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    primary: # Meta Database
+      jdbcUrl: ${DATABASE_URL} # .yml 파일을 쓰는 경우 jdbcUrl로 변경해서 맵핑해야 한다.
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    secondary: # Result Database
+      jdbcUrl: ${RESULT_DATABASE_URL} # .yml 파일을 쓰는 경우 jdbcUrl로 변경해서 맵핑해야 한다.
+      username: ${RESULT_DATABASE_USER}
+      password: ${RESULT_DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
   servlet:
     multipart:
       maxRequestSize: 30MB
@@ -15,4 +24,4 @@ spring:
     properties:
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100
-    sql.init.mode: alway
+    sql.init.mode: always
