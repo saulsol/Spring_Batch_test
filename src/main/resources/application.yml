@@ -1,7 +1,9 @@
 spring:
   batch:
+    jdbc:
+      initialize-schema: always
     job:
-      enabled: false
+      enabled: false # 서버를 실행시켰을 때 바로 실행이 되지 않게 방지 => 원하는 시간 때에 실행되도록 config 작성해야 함
   datasource:
     primary: # Meta Database
       jdbcUrl: ${DATABASE_URL} # .yml 파일을 쓰는 경우 jdbcUrl로 변경해서 맵핑해야 한다.
